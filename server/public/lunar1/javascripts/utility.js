@@ -3,7 +3,7 @@
  */
 
 var SvgUtil = function() {
-
+	
 	var addPattern  = function (svg, patternName, picUrl, width, height  ){
 		var defs = svg.append('svg:defs');
 		defs.append("svg:pattern")
@@ -22,5 +22,6 @@ var SvgUtil = function() {
 	
 	return {
 		"addPattern" : addPattern
+		
 	};
 }();
