@@ -1,11 +1,20 @@
 <html>
 <head>
-	<title>Overview of D3</title>
+	<title>Lookup of D3</title>
 	<!-- <script src="http://d3js.org/d3.v3.min.js"></script> -->
-	<script src="d3.v3.min.js"></script>
+	<script src="javascripts/d3.v3.min.js"></script>
 		
 </head>
 <body>
+	<svg height="8" width="8" xmlns="http://www.w3.org/2000/svg" version="1.1">
+	  <defs>
+	    <pattern id="crosshatch" patternUnits="userSpaceOnUse" width="8" height="8">
+	      <image xlink:href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8'><path fill='#fff' d='M0 0h8v8h-8z'/><path d='M0 0l8 8zm8 0l-8 8z' stroke-width='.5' stroke='#aaa'/></svg>" x="0" y="0" width="8" height="8">
+	      </image>
+	    </pattern>
+	  </defs>
+	</svg>
+
 	<script>
 		// **** Drawing simple shapes ****
 		var canvas = d3.select("body")
@@ -19,7 +28,7 @@
 					.attr("cx",50)
 					.attr("cy",50)
 					.attr("r",30)
-					.attr("fill","lightblue");
+					.attr("fill","url(#crosshatch)");
 					
 		var rect = canvas.append("rect")
 					.attr("x",100)
@@ -76,20 +85,41 @@
 		/***********************************************/
 		/*    Example 4 : External data                */
 		/***********************************************/
-		d3.json("resources/mydata.json", function(data){
+		d3.selectAll("#pic1").append("svg:image")
+	      .attr("xlink:href", "resources/pic1.jpg")
+	      .attr("width", 150)
+	      .attr("height", 200);
+		
+		d3.json("resources/mydata.json", function(error,data){
+			if (error) return console.log(error);
 			console.log(data);
+			var canvas3 = d3.select("body")
+							.append("svg")		
+							.attr("width", 300)
+							.attr("height", 400)
+							.attr("style", "outline: thin solid blue;") // Give it a border;
+			var group = canvas3.append("g")
+							.attr("transform","translate(50,50)");
+			group.selectAll(".myclass")
+			.data(data)
+			.enter()
+			.append("rect")
+			.attr("x",function(d){ return d.x;}) 
+			.attr("y",function(d){ return d.y;}) 
+			.attr("height",80)
+			.attr("width",80)
+			.style("fill", "lightgreen")
+			//.attr("class","myclass")
+			;
+		
+			
+			
+			
+			
+			
+			
 		});
 		
-		
-		
-		var canvas3 = d3.select("body")
-						.append("svg")
-						.attr("width", 300)
-						.attr("height", 400)
-						.attr("style", "outline: thin solid blue;") // Give it a border;
-		var group = canvas3.append("g")
-						.attr("transform","translate(50,50)");
-						
 			
 					
 					

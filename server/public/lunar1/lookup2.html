@@ -1,0 +1,30 @@
+<html>
+<head>
+	<title>Lookup of D3</title>
+	<!-- <script src="http://d3js.org/d3.v3.min.js"></script> -->
+	<script src="javascripts/d3.v3.min.js"></script>
+	<script src="javascripts/utility.js"></script>
+		
+</head>
+<body>
+		
+	<script>
+	var config = {
+		    "pic_size" : 500
+		}
+	var svg = d3.select("body").append("svg")
+	        .attr("width", config.pic_size)
+	        .attr("height", config.pic_size);
+	SvgUtil.addPattern(svg, "patternId", 'resources/pic1.jpg' , config.pic_size,config.pic_size); 
+	
+	var circle = svg.append("circle")
+    .attr("cx", config.pic_size/2)
+    .attr("cy", config.pic_size/2)
+    .attr("r", config.pic_size/2)
+    .style("fill", "#fff")
+    .style("fill", "url(#patternId)");
+	
+
+	</script>
+</body>
+</html>
