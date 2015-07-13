@@ -16,34 +16,9 @@
 	</svg>
 
 	<script>
-		// **** Drawing simple shapes ****
-		var canvas = d3.select("body")
-					.append("svg")
-					.attr("style", "outline: thin solid red;") // Give it a border
-					.attr("width",300)
-					.attr("height",100);
-					
-					
-		var circle = canvas.append("circle")
-					.attr("cx",50)
-					.attr("cy",50)
-					.attr("r",30)
-					.attr("fill","url(#crosshatch)");
-					
-		var rect = canvas.append("rect")
-					.attr("x",100)
-					.attr("y",20)
-					.attr("width",30)
-					.attr("height",50);
-					
-		var line = canvas.append("line")
-					.attr("x1",160)
-					.attr("y1",40)
-					.attr("x2",400)
-					.attr("y2",40)
-					.attr("stroke","green");
+	
 		/***********************************************/
-		/*    Example 2                                */
+		/*    Scales                                  */
 		/***********************************************/					
 		// *** With array of data ***
 		var dataArray =[20,40,60,80];
@@ -82,43 +57,7 @@
 		.attr("transform","translate(0,100)")
 		.call(axis);
 		
-		/***********************************************/
-		/*    Example 4 : External data                */
-		/***********************************************/
-		d3.selectAll("#pic1").append("svg:image")
-	      .attr("xlink:href", "resources/pic1.jpg")
-	      .attr("width", 150)
-	      .attr("height", 200);
-		
-		d3.json("resources/mydata.json", function(error,data){
-			if (error) return console.log(error);
-			console.log(data);
-			var canvas3 = d3.select("body")
-							.append("svg")		
-							.attr("width", 300)
-							.attr("height", 400)
-							.attr("style", "outline: thin solid blue;") // Give it a border;
-			var group = canvas3.append("g")
-							.attr("transform","translate(50,50)");
-			group.selectAll(".myclass")
-			.data(data)
-			.enter()
-			.append("rect")
-			.attr("x",function(d){ return d.x;}) 
-			.attr("y",function(d){ return d.y;}) 
-			.attr("height",80)
-			.attr("width",80)
-			.style("fill", "lightgreen")
-			//.attr("class","myclass")
-			;
-		
-			
-			
-			
-			
-			
-			
-		});
+
 		
 			
 					

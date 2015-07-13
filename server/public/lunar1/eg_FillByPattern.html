@@ -10,7 +10,7 @@
 		
 	<script>
 	var config = {
-		    "pic_size" : 500
+		    "pic_size" : 400
 		}
 	var svg = d3.select("body").append("svg")
 	        .attr("width", config.pic_size)
@@ -21,15 +21,13 @@
     .attr("cx", config.pic_size/2)
     .attr("cy", config.pic_size/2)
     .attr("r", config.pic_size/2)
-    .style("fill", "#fff")
-    .style("fill", "url(#patternId)");
+    .attr("stroke","green")
+    //.style("fill", "blue")
+    .style("fill", "url(#patternId)")
+    ;
 	
 	
-	function juju(a,b){
-		return a+b;
-	}
 	
-	console.log(juju(5,6));
 
 	</script>
 </body>
