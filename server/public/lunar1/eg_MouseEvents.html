@@ -1,0 +1,70 @@
+<html>
+<head>
+	<title>Mouse Events</title>
+	<!-- <script src="http://d3js.org/d3.v3.min.js"></script> -->
+	<script src="javascripts/d3.v3.min.js"></script>
+		
+</head>
+<body>
+	
+	<script>
+	
+		var data=[1,2,3];
+		var canvas = d3.select("body")
+		.append("svg")
+		.attr("style", "outline: thin solid red;") // Give it a border
+		.attr("width",300)
+		.attr("height",100);
+		
+		var rect = canvas.append("g")
+					.append("rect")
+					.attr("width",130)
+					.attr("height",110);
+		rect.on("click", function() {
+		    console.log( d3.mouse(this));
+		    //group.attr("width",150);
+		});
+		
+		var circle = canvas.append("g")
+		.append("circle")
+		.attr("cx",60)
+		.attr("cy",60)
+		.attr("r",20)
+		.attr("fill","yellow");
+		circle.on("drag",function() {
+		    console.log( d3.mouse(this));
+		    //group.attr("width",150);
+		});
+		
+		
+		
+		
+// 		canvas.selectAll("rect")
+// 		.data(data)
+// 		.enter()
+// 		//.append("div")
+// 		.append("rect")
+// 		.attr("width",30)
+// 		.attr("height",10)
+// 		.attr("fill","red")
+// 		.on("mousedown",
+// 				function() {
+// 					var div = d3.select(this).classed("active", true);
+
+// 					var w = d3.select(window).on("mousemove", mousemove).on(
+// 							"mouseup", mouseup);
+
+// 					d3.event.preventDefault(); // disable text dragging
+
+// 					function mousemove() {
+// 						div.text(d3.mouse(div.node(canvas)));
+// 					}
+
+// 					function mouseup() {
+// 						div.classed("active", false);
+// 						w.on("mousemove", null).on("mouseup", null);
+// 					}
+// 				});
+	</script>
+</body>
+</html>
