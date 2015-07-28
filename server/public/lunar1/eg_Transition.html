@@ -1,0 +1,71 @@
+<html>
+<head>
+	<title>Lookup of D3</title>
+	<!-- <script src="http://d3js.org/d3.v3.min.js"></script> -->
+	<script src="javascripts/d3.v3.min.js"></script>
+		
+</head>
+<body>
+	<svg height="8" width="8" xmlns="http://www.w3.org/2000/svg" version="1.1">
+	  <defs>
+	    <pattern id="crosshatch" patternUnits="userSpaceOnUse" width="8" height="8">
+	      <image xlink:href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8'><path fill='#fff' d='M0 0h8v8h-8z'/><path d='M0 0l8 8zm8 0l-8 8z' stroke-width='.5' stroke='#aaa'/></svg>" x="0" y="0" width="8" height="8">
+	      </image>
+	    </pattern>
+	  </defs>
+	</svg>
+
+	<script>
+		// **** Drawing simple shapes ****
+		var canvas = d3.select("body")
+					.append("svg")
+					.attr("style", "outline: thin solid red;") // Give it a border
+					.attr("width",800)
+					.attr("height",2500);
+					
+					
+							
+// 		var rect = canvas.append("rect")
+// 					.attr("x",30)
+// 					.attr("y",20)
+// 					.attr("width",30)
+// 					.attr("height",20);
+		
+// 		rect.transition()
+// 		.attr("x", 600)
+// 		.attr("y", 280)
+// 		.duration(2000)
+// 		.ease("linear"); // cubic-in-out (default) , linear , elastic
+					
+		var carWidth = 5;
+		var carHeight = 2;
+		var lanes = function() {
+			var arr =[];
+			for(var i=0; i < 1500 ; i++){
+				arr.push(i * 3);
+			}
+			return arr;
+		}();
+		
+	
+		canvas.selectAll("rect")
+		.data(lanes)
+		.enter()
+		.append("rect")
+		.attr("x",0)
+		.attr("y",function(d){ return d})
+		.attr("width", carWidth)
+		.attr("height", carHeight)
+		.transition()
+		.attr("x",600)
+		.duration(2000)
+		.ease("elastic"); // cubic-in-out (default) , linear , elastic;
+		
+					
+
+			
+					
+
+	</script>
+</body>
+</html>
