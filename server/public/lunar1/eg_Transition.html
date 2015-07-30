@@ -41,7 +41,7 @@
 		var carHeight = 2;
 		var lanes = function() {
 			var arr =[];
-			for(var i=0; i < 1500 ; i++){
+			for(var i=0; i < 10 ; i++){
 				arr.push(i * 3);
 			}
 			return arr;
@@ -58,10 +58,91 @@
 		.attr("height", carHeight)
 		.transition()
 		.attr("x",600)
-		.duration(2000)
-		.ease("elastic"); // cubic-in-out (default) , linear , elastic;
+		//.duration(12000)
+		.duration(function(d){return d*100;})
+		.ease("linear"); // cubic-in-out (default) , linear , elastic;
 		
-					
+	
+		var ysteps = [1,2,3,5,8,13,21,33,54,187];
+		
+		var xrect = canvas.append("rect")
+		.attr("width", 30).attr("height", 20)
+		.attr("x",0).attr("y",20);
+		
+		xrect
+		.transition()
+		//.attr("y",20)
+		.attr("x", 300)
+		.duration(2000)
+		.ease("linear")
+		.transition()
+		.attr("x",600)
+		.duration(1000)
+		.ease("linear")
+		.transition()
+		.attr("x",0)
+		.duration(2000)
+		.ease("linear")
+	//	;
+		//xrect
+		.transition()
+		.duration(10000)
+// 		.attr("x",600)
+// 		.attrTween("y",
+// 			function interpolateNumber() {
+// 				var i = d3.interpolateRound(1,10);
+// 	  			return function(t) {
+// 	    			return ysteps[i(t)];
+// 	  			};
+// 			});
+		
+		  .ease("linear")
+	      .attrTween("transform", function (d, i) {
+	          return function (t) {
+	              //var p = pathNode.getPointAtLength(pathLength * t);
+	              return "translate(0," + ysteps[i]*t + ")";
+	          }
+	      })
+	      .each('end', function(){
+
+	        d3.select( this )
+	          .transition()
+	          .duration(600)
+	          .attr('r', 32)
+	          .style('opacity', 0.0)
+	          .remove();   
+	      });
+		
+			/****************************************/
+          var positions = [1,100,250,500,700,600,400,200,150,600,700];
+          var steps = d3.range(positions.length)   // returns an array min/max = 0/1 with num elements = positions.length
+                              .map(
+                                d3.scale.linear()
+                                  .domain([0, positions.length - 1])
+                                  .range([0, 1])
+                          );
+          var o = d3.scale.linear()
+       			.domain(steps)
+         		.range(positions);
+			var mySquare = canvas.append("rect")
+			.attr("width", 30).attr("height", 20)
+			.attr("x",0).attr("y",50);
+		 	mySquare.transition()
+			  .duration(5000)
+			  .delay(0)
+			  .attrTween("x", function (d, i, a) { 
+			       console.log("d=" + d); 
+			       console.log("i=" + i); 
+			       console.log("a=" + a);
+			       return function(t){
+			    	   var xpos = o(t);
+			    	   //console.log(t+":" + xpos)
+			    	   return xpos;
+			       }
+			       //return d3.interpolate(a, 400); 
+			  });
+		  
+	   
 
 			
 					
