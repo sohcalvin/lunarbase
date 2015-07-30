@@ -1,0 +1,98 @@
+<html>
+<head>
+	<title>Lookup of D3</title>
+	<!-- <script src="http://d3js.org/d3.v3.min.js"></script> -->
+	<script src="javascripts/d3.v3.min.js"></script>
+		
+</head>
+<body>
+	<svg height="8" width="8" xmlns="http://www.w3.org/2000/svg" version="1.1">
+	  <defs>
+	    <pattern id="crosshatch" patternUnits="userSpaceOnUse" width="8" height="8">
+	      <image xlink:href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8'><path fill='#fff' d='M0 0h8v8h-8z'/><path d='M0 0l8 8zm8 0l-8 8z' stroke-width='.5' stroke='#aaa'/></svg>" x="0" y="0" width="8" height="8">
+	      </image>
+	    </pattern>
+	  </defs>
+	</svg>
+
+	<script>
+		// **** Drawing simple shapes ****
+		var canvas = d3.select("body")
+					.append("svg")
+					.attr("style", "outline: thin solid red;") // Give it a border
+					.attr("width",800)
+					.attr("height",2500);
+					
+					
+					
+		var carWidth = 5;
+		var carHeight = 2;
+		var carData = [
+						 [1,100,250,500,700,600,400,200,150,600,700]
+						,[1,11,290,550,800,500,200,100,150,600,700]
+						,[1,101,880,550,800,500,800,100,150,600,700] 
+						 ,[1,11,290,550,800,500,200,100,150,600,700]
+						,[1,101,90,550,800,500,800,100,150,600,700] 
+						 ,[1,11,290,550,800,500,200,100,150,100,700]
+						,[1,101,90,550,800,500,800,100,150,600,700] 
+						 ,[1,11,290,550,800,500,200,100,150,600,700]
+						,[1,101,90,550,800,100,800,100,150,600,700] 
+						 ,[1,11,290,550,800,500,200,100,150,600,700]
+						,[1,101,90,550,800,500,800,100,150,600,700] 
+						 ,[1,11,290,550,800,500,300,100,150,600,700]
+						,[1,101,90,550,800,500,800,600,150,600,700] 
+					
+		               ];
+		
+	
+          var positions = [1,100,250,500,700,600,400,200,150,600,700];
+          var steps = d3.range(positions.length)   // returns an array min/max = 0/1 with num elements = positions.length
+                              .map(
+                                d3.scale.linear()
+                                  .domain([0, positions.length - 1])
+                                  .range([0, 1])
+                          );
+          var o = d3.scale.linear()
+       			.domain(steps)
+         		.range(positions);
+          
+			canvas.selectAll("rect")
+			.data(carData)
+			.enter()
+			.append("rect")
+			.attr("width", 30).attr("height", 20)
+			.attr("x",0).attr("y",50)
+		 	.transition()
+			  .duration(5000)
+			  .delay(0)
+			  .attrTween("transform", function (d, i, a) { 
+			       console.log("d=" + d); 
+			       console.log("i=" + i); 
+			       console.log("a=" + a);
+			       var positions =d;
+			       var steps = d3.range(positions.length)   // returns an array min/max = 0/1 with num elements = positions.length
+			                   .map(
+			                     d3.scale.linear()
+			                       .domain([0, positions.length - 1])
+			                       .range([0, 1])
+			               		);
+					var o = d3.scale.linear()
+							.domain(steps)
+							.range(positions);
+			       
+			       return function(t){
+			    	   var xpos = o(t);
+			    	   var ypos = o(t);
+			    	   return "translate(" + [xpos, ypos] + ")";
+			       }
+			     
+			  });
+		  
+	   
+
+			
+					
+
+	</script>
+</body>
+</html>
