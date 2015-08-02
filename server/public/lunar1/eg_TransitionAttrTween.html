@@ -43,18 +43,21 @@
 						,[1,101,90,550,800,500,800,600,150,600,700] 
 					
 		               ];
+		var carData2 = [{10,30},{40,100},{300,300}];
+				
+		
 		
 	
-          var positions = [1,100,250,500,700,600,400,200,150,600,700];
-          var steps = d3.range(positions.length)   // returns an array min/max = 0/1 with num elements = positions.length
-                              .map(
-                                d3.scale.linear()
-                                  .domain([0, positions.length - 1])
-                                  .range([0, 1])
-                          );
-          var o = d3.scale.linear()
-       			.domain(steps)
-         		.range(positions);
+//           var positions = [1,100,250,500,700,600,400,200,150,600,700];
+//           var steps = d3.range(positions.length)   // returns an array min/max = 0/1 with num elements = positions.length
+//                               .map(
+//                                 d3.scale.linear()
+//                                   .domain([0, positions.length - 1])
+//                                   .range([0, 1])
+//                           );
+//           var o = d3.scale.linear()
+//        			.domain(steps)
+//          		.range(positions);
           
 			canvas.selectAll("rect")
 			.data(carData)

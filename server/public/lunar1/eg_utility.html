@@ -10,14 +10,24 @@
 	
 
 	<script>
-		// **** Drawing simple shapes ****
+		// **** Text ****
 		var p = d3.select("body")
 					.append("p")
 					.text(d3.format(".1f")(123.1234));
 					
 					
+		// Range and scale
+		var carData2 = [{x:10,y:30},{x:40,y:100},{x:300,y:300}];
 		
-					
+     var steps = d3.range(carData2.length)   // returns an array min/max = 0/1 with num elements = positions.length
+                         .map(
+                           d3.scale.linear()
+                             .domain([0, carData2.length - 1])
+                             .range([0, 1])
+                     );
+     var o = d3.scale.linear()
+  			.domain(steps)
+    		.range(carData2);			
 
 			
 					
