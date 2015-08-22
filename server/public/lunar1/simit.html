@@ -36,7 +36,7 @@
 			.attr("width", carWidth).attr("height", carHeight)
 			.attr("x",0).attr("y",50)
 		 	.transition()
-			  .duration(5000)
+			  .duration(15000)
 			  .delay(0)
 			  .tween("transform", function (d, i, a) { 
 			       console.log("d=" + d); 
@@ -54,7 +54,7 @@
 							.range(positions);
 			       
 			       return function(t){
-			    	   var xpos = o(t).x;
+			    	   var xpos = o(t).x * 10;
 			    	   var ypos = o(t).y;
 			    	  //this.style.width(xpos);
 // 			    	   this.attr("x", xpos);
